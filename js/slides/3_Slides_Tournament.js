@@ -15,7 +15,7 @@ SLIDES.push({
 			{strategy:"all_d", count:1},
 			{strategy:"all_c", count:1},
 			{strategy:"grudge", count:1},
-			{strategy:"prober", count:1}
+			{strategy:"matt", count:1} //Originally prober
 		];
 		Tournament.FLOWER_CONNECTIONS = true;
 		self.add({id:"tournament", type:"Tournament", x:-20, y:20});
@@ -45,7 +45,7 @@ SLIDES.push({
 		_addButton("all_c", 730, 220+25);
 		_addButton("all_d", 510, 300+25);
 		_addButton("grudge", 730, 300+25);
-		_addButton("prober", 510, 380+25);
+		_addButton("matt", 510, 380+25);
 
 		// WHO'S WHO?
 		self.add({
@@ -61,7 +61,7 @@ SLIDES.push({
 		self.remove("bet_all_c");
 		self.remove("bet_all_d");
 		self.remove("bet_grudge");
-		self.remove("bet_prober");
+		self.remove("bet_matt"); //Orig prober
 		self.remove("forgot");
 	}
 });

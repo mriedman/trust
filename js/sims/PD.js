@@ -6,7 +6,8 @@ var PEEP_METADATA = {
 	prober: {frame:4, color:"#f6b24c"},
 	  tf2t: {frame:5, color:"#88A8CE"},
 	pavlov: {frame:6, color:"#86C448"},
-	random: {frame:7, color:"#FF5E5E"}
+	random: {frame:7, color:"#FF5E5E"},
+          matt: {frame:7, color:"#55aacc"}
 };
 
 var PD = {};
@@ -242,4 +243,41 @@ function Logic_prober(){
 		otherMove = other; // for TFT
 	};
 
+}
+
+function Logic_matt(){
+        var self=this;
+
+        var moves=[PD.CHEAT, PD.COOPERATE, PD.COOPERATE]
+        var moves2=[PD.CHEAT, PD.COOPERATE, PD.COOPERATE]
+        var everCheatedMe=false;
+        var everCoopedMe=false;
+        var isSelf=true;
+        var otherMove=PD.COOPERATE;
+        var moveCount=0;
+
+        self.play = function(){
+		moveCount++;
+		if(moves.length>0){
+			// Testing phase
+			var move = moves.shift();
+			return move;
+		}else{
+			if(everCheatedMe){
+				if(isSelf||(moveCount%5==2&&everCoopedMe)) return PD.COOPERATE; // Cooperate
+				if(moveCount%5==0) return PD.CHEAT; // Cheat
+				return otherMove; // TFT
+			}else{
+				return PD.CHEAT; // Always Cheat
+			}
+		}
+	};
+	self.remember = function(own, other){
+		if(moves.length>0){
+			if(other==PD.CHEAT) everCheatedMe=true; // Testing phase: ever retaliated?
+			if(other==PD.COOPERATE) everCoopedMe=true; // Testing phase: ever cooperated?
+			if(moves2.shift()!=other) isSelf=false; //Facing itself?
+		}
+		otherMove = other; // for TFT
+	};
 }

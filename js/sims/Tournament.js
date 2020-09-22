@@ -8,10 +8,10 @@ Tournament.resetGlobalVariables = function(){
 		{strategy:"all_d", count:3},
 		{strategy:"all_c", count:3},
 		{strategy:"grudge", count:3},
-		{strategy:"prober", count:3},
+		{strategy:"matt", count:3}, //Originally prober
 		{strategy:"tf2t", count:3},
 		{strategy:"pavlov", count:3},
-		{strategy:"random", count:4}
+		{strategy:"random", count:2}
 	];
 
 	Tournament.FLOWER_CONNECTIONS = false;
